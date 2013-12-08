@@ -19,11 +19,8 @@ endtry
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
 
-"set linenumbers to grey
-:highlight LineNr ctermfg=grey
-"set comment colors to white
-:hi Comment ctermfg=7
-
+" set colorscheme
+colorscheme elflord
 "VUNDLE
 "autoinstaller
  let iCanHazVundle=1
@@ -54,8 +51,6 @@ Bundle 'nerdtree-ack'
 Bundle 'Syntastic'
 Bundle 'vim-slime'
 
-
-
 filetype plugin indent on     " required!
 "
 " Brief help
@@ -69,6 +64,19 @@ filetype plugin indent on     " required!
 
 " Use jshint (uses ~/.jshintrc)
 let g:syntastic_javascript_checkers = ['jshint']
+
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" python autocompletion
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+" python style
+set expandtab
+set textwidth=79
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+:syntax on
