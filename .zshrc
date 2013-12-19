@@ -55,6 +55,6 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-#case $- in *i*)
-#    if [ -z "$TMUX" ]; then exec tmux; fi;;
-#esac
+if [[ ! $TERM =~ screen ]]; then
+    exec tmux
+fi

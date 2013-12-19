@@ -12,6 +12,21 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
+"fixes terminal copy paste on mac
+if &term =~ "xterm.*" || &term =~ "screen"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+    cmap <Esc>[200~ <nop>
+    cmap <Esc>[201~ <nop>
+endif
+
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !pbcopy<CR><CR>
 
@@ -74,7 +89,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " python style
 set expandtab
-set textwidth=79
+"set textwidth=79
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
