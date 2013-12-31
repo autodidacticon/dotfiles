@@ -1,17 +1,3 @@
-set clipboard=unnamed
-set runtimepath+=~/.vim_runtime
-set number
-
-source ~/.vim_runtime/vimrcs/basic.vim
-source ~/.vim_runtime/vimrcs/filetypes.vim
-source ~/.vim_runtime/vimrcs/plugins_config.vim
-source ~/.vim_runtime/vimrcs/extended.vim
-
-try
-source ~/.vim_runtime/my_configs.vim
-catch
-endtry
-
 "fixes terminal copy paste on mac
 if &term =~ "xterm.*" || &term =~ "screen"
     let &t_ti = &t_ti . "\e[?2004h"
@@ -60,11 +46,12 @@ Bundle 'gmarik/vundle'
 
 " Bundles here
 Bundle 'ervandew/supertab'
-Bundle 'FindInNerdTree'
+Bundle 'scrooloose/nerdtree'
 Bundle 'ack.vim'
 Bundle 'nerdtree-ack'
 Bundle 'Syntastic'
 Bundle 'vim-slime'
+Bundle 'Tagbar'
 
 filetype plugin indent on     " required!
 "
@@ -95,3 +82,9 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 :syntax on
+
+"ctags
+set tags=./tags,./TAGS,tags;~,TAGS;~
+
+"tagbar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
