@@ -55,6 +55,7 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-if [[ ! $TERM =~ screen ]]; then
-    exec tmux
+# tmux only if iterm2
+if [[ $TERM = xterm ]]; then
+   exec tmux
 fi
