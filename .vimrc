@@ -1,3 +1,7 @@
+"automatically change directory to current working file
+"may need to change this in the future to:
+"autocmd BufEnter * silent! lcd %:p:h
+set autochdir
 set number
 "persistent undo
 set undodir=~/.vim/undodir
