@@ -32,7 +32,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew)
+plugins=(git brew ruby)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -57,9 +57,10 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # tmux only if iterm2
 if [[ $TERM = xterm ]]; then
-   exec tmux
+  exec tmux
 fi
 
 export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
-
+export MAVEN_OPTS=-Xmx512M
 export EDITOR=/usr/bin/vim
+source /usr/local/opt/nvm/nvm.sh
