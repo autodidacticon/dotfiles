@@ -32,34 +32,10 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew)
+plugins=(git mvn rails ruby)
 
 source $ZSH/oh-my-zsh.sh
 
-sudo () { ( unset LD_LIBRARY_PATH DYLD_LIBRARY_PATH; exec command sudo $* ) }
-# Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
-
-# Axiom virtualenvwrapper config
-export WORKON_HOME=/opt/.virtualenvs/
-. /usr/local/bin/virtualenvwrapper.sh
-
-export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.37/libexec
-
-#export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
-#export PATH=$PATH:$DYLD_LIBRARY_PATH
-export SQLPATH="/usr/local/oracle/instantclient_11_2"
-export TNS_ADMIN="/usr/local/oracle/network/admin"
-export NLS_LANG="AMERICAN_AMERICA.UTF8"
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# tmux only if iterm2
-if [[ $TERM = xterm ]]; then
-   exec tmux
-fi
-
-export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 
 export EDITOR=/usr/bin/vim

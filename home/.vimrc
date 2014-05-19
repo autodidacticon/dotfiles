@@ -8,23 +8,12 @@ set undodir=~/.vim/undodir
 set undofile
 set undolevels =1000 "maximum number of changes that can be undone
 set undoreload =10000 "maximum number lines to save for undo on a buffer reload
-"fixes terminal copy paste on mac
-if &term =~ "xterm.*" || &term =~ "screen"
-    let &t_ti = &t_ti . "\e[?2004h"
-    let &t_te = "\e[?2004l" . &t_te
-    function XTermPasteBegin(ret)
-        set pastetoggle=<Esc>[201~
-        set paste
-        return a:ret
-    endfunction
-    map <expr> <Esc>[200~ XTermPasteBegin("i")
-    imap <expr> <Esc>[200~ XTermPasteBegin("")
-    cmap <Esc>[200~ <nop>
-    cmap <Esc>[201~ <nop>
-endif
+
+" enables :Paste to just do what you want
+command Paste execute 'set noai | insert | set ai'
 
 "maps '' to copy to system clipboard, visual mode
-:vmap '' :w !pbcopy<CR><CR>
+:vmap '' :w !xclip -selection c<CR><CR>
 
 "maps sv,ev to loading/opening vimrc
 nmap <silent> ;sv :so $MYVIMRC<CR>
@@ -59,7 +48,7 @@ Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ack.vim'
 Bundle 'nerdtree-ack'
-Bundle 'Syntastic'
+Bundle 'scrooloose/syntastic'
 Bundle 'vim-slime'
 Bundle 'Tagbar'
 
