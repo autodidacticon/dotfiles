@@ -9,19 +9,19 @@ set undofile
 set undolevels =1000 "maximum number of changes that can be undone
 set undoreload =10000 "maximum number lines to save for undo on a buffer reload
 "fixes terminal copy paste on mac
-if &term =~ "xterm.*" || &term =~ "screen"
-    let &t_ti = &t_ti . "\e[?2004h"
-    let &t_te = "\e[?2004l" . &t_te
-    function XTermPasteBegin(ret)
-        set pastetoggle=<Esc>[201~
-        set paste
-        return a:ret
-    endfunction
-    map <expr> <Esc>[200~ XTermPasteBegin("i")
-    imap <expr> <Esc>[200~ XTermPasteBegin("")
-    cmap <Esc>[200~ <nop>
-    cmap <Esc>[201~ <nop>
-endif
+"if &term =~ "xterm.*" || &term =~ "screen"
+"    let &t_ti = &t_ti . "\e[?2004h"
+"    let &t_te = "\e[?2004l" . &t_te
+"    function XTermPasteBegin(ret)
+"        set pastetoggle=<Esc>[201~
+"        set paste
+"        return a:ret
+"    endfunction
+"    map <expr> <Esc>[200~ XTermPasteBegin("i")
+"    imap <expr> <Esc>[200~ XTermPasteBegin("")
+"    cmap <Esc>[200~ <nop>
+"    cmap <Esc>[201~ <nop>
+"endif
 
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !pbcopy<CR><CR>
@@ -43,7 +43,10 @@ colorscheme elflord
      silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
      let iCanHazVundle=0
  endif
-
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set nocompatible              " be iMproved
 filetype off                  " required!
 
@@ -60,9 +63,10 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'ack.vim'
 Bundle 'nerdtree-ack'
 Bundle 'Syntastic'
-Bundle 'vim-slime'
+Bundle 'jpalardy/vim-slime'
 Bundle 'Tagbar'
-
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'elzr/vim-json'
 filetype plugin indent on     " required!
 "
 " Brief help
@@ -84,12 +88,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-" python style
-set expandtab
-"set textwidth=79
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
 set autoindent
 :syntax on
 
