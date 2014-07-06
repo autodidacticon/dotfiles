@@ -1,0 +1,21 @@
+[merge]
+	tool = vimdiff
+	tool = prompt
+	conflictstyle = diff3
+[user]
+	name = Richard Moorhead
+	email = richard.moorhead@gmail.com
+[core]
+	editor = vim
+[credential]
+	helper = gnome-keyring
+
+[alias]
+    #usage
+    send = "!f() { git commit -a -m ${1} && git push origin `git rev-parse --abbrev-ref HEAD`; }; f"
+    amend = "!f() { git commit --amend -C HEAD && git push -f origin `git rev-parse --abbrev-ref HEAD`; }; f"
+    g = grep --break --heading --line-number
+    remtags = "!f() { for t in `git tag`; do git push origin :$t ; git tag -d $t; done }; f"
+[grep]
+	extendedRegexp = true
+	lineNumber = true

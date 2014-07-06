@@ -51,6 +51,7 @@ Bundle 'nerdtree-ack'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-slime'
 Bundle 'Tagbar'
+Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on     " required!
 "
