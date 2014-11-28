@@ -7,11 +7,10 @@
 	email = richard.moorhead@cerner.com
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [credential]
 	helper = osxkeychain
-
 [alias]
-    #usage
     send = "!f() { git commit -a -m $1 && git push origin `git rev-parse --abbrev-ref HEAD`; }; f"
     amend = "!f() { git commit --amend -C HEAD && git push -f origin `git rev-parse --abbrev-ref HEAD`; }; f"
     g = grep --break --heading --line-number

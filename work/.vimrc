@@ -30,6 +30,10 @@ set undoreload =10000 "maximum number lines to save for undo on a buffer reload
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
 
+"set tabs to spaces
+set expandtab
+set tabstop=4
+
 " set colorscheme
 colorscheme elflord
 "VUNDLE
@@ -67,7 +71,9 @@ Bundle 'jpalardy/vim-slime'
 Bundle 'Tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'elzr/vim-json'
+Bundle 'kchmck/vim-coffee-script'
 filetype plugin indent on     " required!
+syntax enable
 "
 " Brief help
 " :BundleList          - list configured bundles
@@ -87,6 +93,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+" markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 set autoindent
 :syntax on
