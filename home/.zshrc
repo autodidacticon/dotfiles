@@ -1,3 +1,4 @@
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -32,7 +33,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mvn rails ruby heroku rake python virtualenvwrapper)
+plugins=(git mvn rails ruby heroku rake python virtualenvwrapper meteor)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,7 +42,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export EDITOR=/usr/bin/vim
 
 if [[ ! $TERM =~ screen ]]; then
-    exec tmux
+ #   exec tmux
 fi
 PATH="$PATH:/usr/local/heroku/bin" #heroku
-PATH="$PATH:/opt/idea-IU-135.909/bin" #intellij
+
+source /bin/aws_zsh_completer.sh
