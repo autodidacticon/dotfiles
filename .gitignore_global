@@ -6,3 +6,4 @@
 tags
 .meteor/
 .node_modules/
+*.pyc
