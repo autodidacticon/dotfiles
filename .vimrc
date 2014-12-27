@@ -49,9 +49,12 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'ack.vim'
 Bundle 'nerdtree-ack'
 Bundle 'scrooloose/syntastic'
-Bundle 'vim-slime'
 Bundle 'Tagbar'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'moll/vim-node'
+Bundle 'kchmck/vim-coffee-script'
+
+nmap <Leader>t :NerdTreeToggle<CR>
 
 filetype plugin indent on     " required!
 "
@@ -71,16 +74,15 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+set expandtab
+set autoindent
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal ts=8 sw=4 sts=4 tw=79
+autocmd Filetype html setlocal ts=2 sw=2 
+autocmd Filetype ruby setlocal ts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=2
 
-" python style
-set expandtab
-"set textwidth=79
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set autoindent
 :syntax on
 
 "ctags
