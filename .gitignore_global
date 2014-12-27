@@ -5,3 +5,4 @@
 .ruby-gemset
 tags
 .meteor/
+.node_modules/

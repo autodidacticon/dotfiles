@@ -8,20 +8,6 @@ set undodir=~/.vim/undodir
 set undofile
 set undolevels =1000 "maximum number of changes that can be undone
 set undoreload =10000 "maximum number lines to save for undo on a buffer reload
-"fixes terminal copy paste on mac
-"if &term =~ "xterm.*" || &term =~ "screen"
-"    let &t_ti = &t_ti . "\e[?2004h"
-"    let &t_te = "\e[?2004l" . &t_te
-"    function XTermPasteBegin(ret)
-"        set pastetoggle=<Esc>[201~
-"        set paste
-"        return a:ret
-"    endfunction
-"    map <expr> <Esc>[200~ XTermPasteBegin("i")
-"    imap <expr> <Esc>[200~ XTermPasteBegin("")
-"    cmap <Esc>[200~ <nop>
-"    cmap <Esc>[201~ <nop>
-"endif
 
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !pbcopy<CR><CR>
@@ -47,6 +33,7 @@ colorscheme elflord
      silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
      let iCanHazVundle=0
  endif
+set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -67,10 +54,11 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'ack.vim'
 Bundle 'nerdtree-ack'
 Bundle 'Syntastic'
-Bundle 'jpalardy/vim-slime'
 Bundle 'Tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'elzr/vim-json'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'moll/vim-node'
 Bundle 'kchmck/vim-coffee-script'
 filetype plugin indent on     " required!
 syntax enable
@@ -93,17 +81,21 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-" markdown
+autocmd FileType python setlocal ts=8 sw=4 sts=4 tw=79
+autocmd Filetype html setlocal ts=2 sw=2 
+autocmd Filetype ruby setlocal ts=2 sw=2
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-set autoindent
-:syntax on
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=2
 
 "ctags
 set tags=./tags,./TAGS,tags;~,TAGS;~
 
 "tagbar
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
+"NERDTree toggle
+nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+"leave insert mode quickly
+inoremap jj <Esc>
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
