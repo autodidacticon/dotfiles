@@ -25,9 +25,12 @@ filetype off                  " required!
 "maps sv,ev to loading/opening vimrc
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
-
 "leave insert mode quickly
 inoremap jj <Esc>
+"leave insert mode and save
+inoremap jjw <Esc> :w<CR>
+"leave insert mode, save, and quit
+inoremap jjwq <Esc> :wq<CR>
 
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -124,3 +127,44 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 "NERDTree toggle
 nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+
+
+"au FileType prg syn region cclFoldIf start="^\s*if\s+" end="^\s*endif\s+" fold transparent exten
+" fold #if...#else...#endif constructs
+syn region IfFoldContainer
+    \ start="^\s*if\(n\?def\)\?\>"
+    \ end="\s*endif\>"
+    \ skip=+"\%(\\"\|[^"]\)\{-}\\\@<!"\|'[^']\{-}'\|'\\''\|//.*+
+    \ transparent
+    \ keepend extend
+    \ containedin=NONE
+    \ contains=SynFoldIf,SynFoldElif,SynFoldElse
+syn region SynFoldIf
+    \ start="^\s*if\(n\?def\)\?\>"
+    \ end="^\s*el\(se\|if\)\>"ms=s-1,me=s-1
+    \ skip=+"\%(\\"\|[^"]\)\{-}\\\@<!"\|'[^']\{-}'\|'\\''\|//.*+
+    \ fold transparent
+    \ keepend
+    \ contained
+    \ nextgroup=SynFoldElif,SynFoldElse
+    \ contains=TOP
+syn region SynFoldElif
+    \ start="^\s*\s*elif\>"
+    \ end="^\s*\s*el\(se\|if\)\>"ms=s-1,me=s-1
+    \ skip=+"\%(\\"\|[^"]\)\{-}\\\@<!"\|'[^']\{-}'\|'\\''\|//.*+
+    \ fold transparent
+    \ keepend
+    \ contained
+    \ nextgroup=SynFoldElse
+    \ contains=TOP
+syn region SynFoldElse
+    \ start="^\s*\s*else\>"
+    \ end="^\s*\s*endif\>"
+    \ skip=+"\%(\\"\|[^"]\)\{-}\\\@<!"\|'[^']\{-}'\|'\\''\|//.*+
+    \ fold transparent
+    \ keepend
+    \ contained
+    \ contains=TOP
