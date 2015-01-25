@@ -33,7 +33,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cabal coffeescript git mvn npm rails ruby rspec rvm heroku rake python virtualenvwrapper meteor)
+plugins=(cabal coffeescript git grunt mvn node npm rails ruby rspec rvm heroku rake python virtualenvwrapper meteor)
 
 source $ZSH/oh-my-zsh.sh
 source /bin/aws_zsh_completer.sh
