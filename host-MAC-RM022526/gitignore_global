@@ -1,0 +1,10 @@
+.idea
+*.iml
+.DS_Store
+.ruby-version
+.ruby-gemset
+tags
+.meteor/
+node_modules/
+*.pyc
+*.swp
