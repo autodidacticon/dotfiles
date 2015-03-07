@@ -2,14 +2,18 @@
 colorscheme elflord
 "automatically change directory to current working file
 "may need to change this in the future to:
-"autocmd BufEnter * silent! lcd %:p:h
-set autochdir
+autocmd BufEnter * silent! lcd %:p:h
+"set autochdir
+"line numers
 set number
+"columns
+set ruler
 "persistent undo
 set undodir=~/.vim/undodir
 set undofile
 set undolevels =1000 "maximum number of changes that can be undone
 set undoreload =10000 "maximum number lines to save for undo on a buffer reload
+"indent settings
 set backspace=indent,eol,start
 set autoindent
 set smartindent
@@ -19,16 +23,22 @@ set expandtab
 set nocompatible              " be iMproved
 filetype off                  " required!
 
+"improved buffer switching
+set wildchar=<Tab> wildmenu wildmode=full
+
+
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !xclip -selection c<CR><CR>
 
 "maps sv,ev to loading/opening vimrc
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
-
 "leave insert mode quickly
 inoremap jj <Esc>
-inoremap jjw <Esc>:w<CR>
+"leave insert mode and save
+inoremap jjw <Esc> :w<CR>
+"leave insert mode, save, and quit
+inoremap jjwq <Esc> :wq<CR>
 
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -92,9 +102,8 @@ Bundle 'gmarik/vundle'
 " Bundles here
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
-Bundle 'ack.vim'
-"yunowerk
-Bundle 'nerdtree-ack'
+Bundle 'rking/ag.vim'
+Bundle 'taiansu/nerdtree-ag'
 Bundle 'Syntastic'
 Bundle 'Tagbar'
 Bundle 'scrooloose/nerdcommenter'
@@ -102,6 +111,8 @@ Bundle 'elzr/vim-json'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'moll/vim-node'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'einars/js-beautify'
 filetype plugin indent on     " required!
 syntax enable
 "
@@ -114,8 +125,25 @@ syntax enable
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 
+" js folding
+set foldmethod=manual
+set foldlevelstart=1
+set foldlevel=0
+
+let javaScript_fold=1         " JavaScript
+let b:javaScript_fold = 1
 " Use jshint (uses ~/.jshintrc)
 let g:syntastic_javascript_checkers = ['jshint']
+map <c-f> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+" Use flake8 
+let g:syntastic_python_checkers = ['flake8']
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
@@ -125,3 +153,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 "NERDTree toggle
 nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+

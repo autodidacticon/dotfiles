@@ -1,0 +1,13 @@
+---
+configuration:
+  default_profile:
+  - autodidacticon
+  - cWadUPBWBpkuJ1pDx5qe2g
+profiles:
+  autodidacticon:
+    cWadUPBWBpkuJ1pDx5qe2g:
+      username: autodidacticon
+      consumer_key: cWadUPBWBpkuJ1pDx5qe2g
+      consumer_secret: iMD2vjJQzg7SA7p9gRHoNf6wzqr1SMpBVMFjaCibZs4
+      token: 518001461-DchBrI0m1W7dd8dOWu7AHMZXqa1IsENYAxzpw5Wt
+      secret: yYID2MKrIj6uFUTkJ41EasPBzIsCXy7GNsoemq7wVaIea

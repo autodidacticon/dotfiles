@@ -1,0 +1,3 @@
+DOTFILES_DIRS="/home/autodidacticon/git/dotfiles"
+EXCLUDES="README.md"
+HOSTNAME="modeltee"
