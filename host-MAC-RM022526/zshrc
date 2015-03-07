@@ -29,38 +29,51 @@ ZSH_THEME="robbyrussell"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+# python virtualenvwrapper settings
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
+export PIP_REQUIRE_VIRTUALENV=true
+export WORKON_HOME=~/.virtualenvs/
+. /usr/local/bin/virtualenvwrapper.sh
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew ruby)
-
+plugins=(brew brew-cask cp django docker fabric git history knife meteor mvn node npm nvm rake rails rake redis-cli rsync ruby rvm svn tmux vagrant)
 source $ZSH/oh-my-zsh.sh
 
-sudo () { ( unset LD_LIBRARY_PATH DYLD_LIBRARY_PATH; exec command sudo $* ) }
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
-
-# Axiom virtualenvwrapper config
-export WORKON_HOME=/opt/.virtualenvs/
-. /usr/local/bin/virtualenvwrapper.sh
-
-export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.37/libexec
 
 #export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
 #export PATH=$PATH:$DYLD_LIBRARY_PATH
+sudo () { ( unset LD_LIBRARY_PATH DYLD_LIBRARY_PATH; exec command sudo $* ) }
+export ORACLE_HOME="/opt/instantclient_11_2"
+export LD_LIBRARY_PATH=$ORACLE_HOME
+export DYLD_LIBRARY_PATH=$ORACLE_HOME
+export PATH=$PATH:$DYLD_LIBRARY_PATH
 export SQLPATH="/usr/local/oracle/instantclient_11_2"
 export TNS_ADMIN="/usr/local/oracle/network/admin"
 export NLS_LANG="AMERICAN_AMERICA.UTF8"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# tmux only if iterm2
-if [[ $TERM = xterm ]]; then
-  exec tmux
-fi
+# tmux only if xterm
+#if [[ $TERM = xterm ]]; then
+#  exec tmux
+#fi
 
 export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export MAVEN_OPTS=-Xmx512M
-export EDITOR=/usr/bin/vim
+
+#nvm
 source /usr/local/opt/nvm/nvm.sh
+
+#ruby
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+#VIM
+export EDITOR=/usr/local/bin/vim
+
+#tomcat
+export TOMCAT_HOME=/usr/local/Cellar/tomcat7/7.0.59/libexec/webapps
+export UNIFIED_CONTENT=/usr/local/Cellar/tomcat7/7.0.59/libexec/webapps/discern/static_content/UnifiedContent

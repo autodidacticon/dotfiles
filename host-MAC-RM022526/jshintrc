@@ -27,5 +27,6 @@
     "undef"         : true,     // prevent the use of undeclared variables
 
     // Relaxing
-    "sub"           : true      // allow all subscript notation, including '[]'
+    "sub"           : true,      // allow all subscript notation, including '[]'
+    "undef"         : false     // ignore undefined errors
 }
