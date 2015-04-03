@@ -4,7 +4,7 @@ colorscheme elflord
 "may need to change this in the future to:
 autocmd BufEnter * silent! lcd %:p:h
 "set autochdir
-"line numers
+"line numbers
 set number
 "columns
 set ruler
@@ -26,10 +26,12 @@ filetype off                  " required!
 "improved buffer switching
 set wildchar=<Tab> wildmenu wildmode=full
 
+"match those pesky nonascii chars
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
 
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !pbcopy<CR><CR>
-
 "maps sv,ev to loading/opening vimrc
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
@@ -42,7 +44,7 @@ inoremap jjwq <Esc> :wq<CR>
 
 " python autocompletion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python setlocal ts=8 sw=4 sts=4 tw=79
+autocmd FileType python setlocal ts=4 sw=2 sts=2 tw=79
 autocmd Filetype html setlocal ts=2 sw=2 
 autocmd Filetype ruby setlocal ts=2 sw=2
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -113,6 +115,10 @@ Bundle 'moll/vim-node'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
+Bundle 'klen/python-mode'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'othree/tern_for_vim_coffee'
+
 filetype plugin indent on     " required!
 syntax enable
 "
@@ -125,17 +131,16 @@ syntax enable
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 
-" js folding
-set foldmethod=manual
-set foldlevelstart=1
+set foldmethod=indent
+set foldlevelstart=0
 set foldlevel=0
-
-let javaScript_fold=1         " JavaScript
+" JavaScript
+let javaScript_fold=1         
 let b:javaScript_fold = 1
 " Use jshint (uses ~/.jshintrc)
 let g:syntastic_javascript_checkers = ['jshint']
+" for js
 map <c-f> :call JsBeautify()<cr>
-" or
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
@@ -144,16 +149,21 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 " Use flake8 
 let g:syntastic_python_checkers = ['flake8']
+" pymode
+let g:pymode_folding = 1
+let g:pymode_indent = 1
+let g:pymode_virtualenv = 1
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "tagbar
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
+nnoremap <silent> <Leader>] :TagbarToggle<CR>
 "NERDTree toggle
 nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
 
+"persist folds
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
 
