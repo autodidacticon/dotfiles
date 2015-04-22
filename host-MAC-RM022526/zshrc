@@ -48,25 +48,21 @@ source $ZSH/oh-my-zsh.sh
 #export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
 #export PATH=$PATH:$DYLD_LIBRARY_PATH
 sudo () { ( unset LD_LIBRARY_PATH DYLD_LIBRARY_PATH; exec command sudo $* ) }
-export ORACLE_HOME="/opt/instantclient_11_2"
-export LD_LIBRARY_PATH=$ORACLE_HOME
+export ORACLE_HOME=$HOME"/instantclient_11_2"
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 export DYLD_LIBRARY_PATH=$ORACLE_HOME
 export PATH=$PATH:$DYLD_LIBRARY_PATH
-export SQLPATH="/usr/local/oracle/instantclient_11_2"
-export TNS_ADMIN="/usr/local/oracle/network/admin"
+export SQLPATH=$HOME"/instantclient_11_2"
+export TNS_ADMIN=$HOME"/Documents"
 export NLS_LANG="AMERICAN_AMERICA.UTF8"
+alias sqlplus='rlwrap sqlplus'
 
-
-# tmux only if xterm
-#if [[ $TERM = xterm ]]; then
-#  exec tmux
-#fi
-
-export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+#export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export MAVEN_OPTS=-Xmx512M
 
 #nvm
 source /usr/local/opt/nvm/nvm.sh
+export NODE_PATH=/usr/local/share/npm/lib/node_modules
 
 #ruby
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

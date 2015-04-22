@@ -32,6 +32,10 @@ highlight nonascii guibg=Red ctermbg=2
 
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !pbcopy<CR><CR>
+"explicit paste toggle
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 "maps sv,ev to loading/opening vimrc
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
@@ -166,4 +170,3 @@ nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
 "persist folds
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
-
