@@ -40,7 +40,7 @@ export WORKON_HOME=~/.virtualenvs/
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew brew-cask cp django docker fabric git history knife meteor mvn node npm nvm rake rails rake redis-cli rsync ruby rvm svn tmux vagrant)
+plugins=(brew brew-cask cp django docker fabric git github history knife meteor mvn node npm nvm rake rails rake redis-cli rsync ruby rvm svn tmux vagrant)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
@@ -73,3 +73,6 @@ export EDITOR=/usr/local/bin/vim
 #tomcat
 export TOMCAT_HOME=/usr/local/Cellar/tomcat7/7.0.59/libexec/webapps
 export UNIFIED_CONTENT=/usr/local/Cellar/tomcat7/7.0.59/libexec/webapps/discern/static_content/UnifiedContent
+
+#haskell
+export PATH=$PATH:$HOME/.cabal/bin
