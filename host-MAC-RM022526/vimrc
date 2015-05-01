@@ -144,9 +144,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set nocompatible              " be iMproved
-filetype off
-filetype plugin indent on     " required!
-syntax enable
+filetype off                  " must turn off before installing bundles
 
 set foldmethod=indent
 set foldlevelstart=0
@@ -216,18 +214,12 @@ command! PrettyXML call DoPrettyXML()
 
 
 NeoBundle "scrooloose/nerdtree"
-"NERDTree toggle
-nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
 
 NeoBundle 'rking/ag.vim'
 NeoBundle 'taiansu/nerdtree-ag'
 NeoBundle 'Syntastic'
-" Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint']
 
 NeoBundle 'Tagbar'
-"tagbar
-nnoremap <silent> <Leader>] :TagbarToggle<CR>
 
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'elzr/vim-json'
@@ -235,28 +227,43 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'moll/vim-node'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'pangloss/vim-javascript'
-" JavaScript
-let b:javascript_fold = 1
 
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'einars/js-beautify'
-" for js
+
+NeoBundle 'marijnh/tern_for_vim'
+
+NeoBundle 'klen/python-mode'
+
+filetype on
+syntax on
+"NERDTree toggle
+nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+" Use jshint (uses ~/.jshintrc)
+let g:syntastic_javascript_checkers = ['jshint']
+"tagbar
+nnoremap <silent> <Leader>] :TagbarToggle<CR>
+" JavaScript
+let b:javascript_fold = 1
 map <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
-NeoBundle 'marijnh/tern_for_vim'
-
-NeoBundle 'klen/python-mode'
 " Use flake8 
 let g:syntastic_python_checkers = ['flake8']
 " pymode
 let g:pymode_folding = 1
 let g:pymode_indent = 1
 let g:pymode_virtualenv = 1
+
+" Automatically reload vimrc when it's saved "{{{
+augroup VimrcSo
+  au!
+  autocmd BufWritePost $MYVIMRC so $MYVIMRC
+augroup END
+"}}}
 
 
 
