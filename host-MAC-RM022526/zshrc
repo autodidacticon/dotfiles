@@ -12,13 +12,13 @@ ZSH_THEME="robbyrussell"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=7
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # python virtualenvwrapper settings
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
@@ -44,35 +44,25 @@ plugins=(brew brew-cask cp django docker fabric git github history knife meteor 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
-#export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
-#export PATH=$PATH:$DYLD_LIBRARY_PATH
 sudo () { ( unset LD_LIBRARY_PATH DYLD_LIBRARY_PATH; exec command sudo $* ) }
-export ORACLE_HOME=$HOME"/instantclient_11_2"
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib
-export DYLD_LIBRARY_PATH=$ORACLE_HOME
-export PATH=$PATH:$DYLD_LIBRARY_PATH
-export SQLPATH=$HOME"/instantclient_11_2"
-export TNS_ADMIN=$HOME"/Documents"
-export NLS_LANG="AMERICAN_AMERICA.UTF8"
-alias sqlplus='rlwrap sqlplus'
 
-#export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export MAVEN_OPTS=-Xmx512M
 
 #nvm
 source /usr/local/opt/nvm/nvm.sh
 export NODE_PATH=/usr/local/share/npm/lib/node_modules
 
-#ruby
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 #VIM
 export EDITOR=/usr/local/bin/vim
 
-#tomcat
-export TOMCAT_HOME=/usr/local/Cellar/tomcat7/7.0.59/libexec/webapps
-export UNIFIED_CONTENT=/usr/local/Cellar/tomcat7/7.0.59/libexec/webapps/discern/static_content/UnifiedContent
-
 #haskell
-export PATH=$PATH:$HOME/.cabal/bin
+PATH=$PATH:$HOME/.cabal/bin
+
+#go
+export GOPATH=$HOME/go
+PATH=$PATH:$GOPATH/bin
+
+#ruby
+PATH=$PATH:$HOME/.rvm/bin
+

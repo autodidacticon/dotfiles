@@ -3,6 +3,11 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+if has('autocmd')
+  filetype on
+  filetype plugin indent on
+endif
+
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -94,48 +99,119 @@ if has("gui_running")
   let g:vimshell_editor_command = "mvim"
 endif
 "}}}
+"
+map vst :VimShellTab <CR>
+set shell=/bin/zsh
 
-" ##Visual
-" Prettiness on the bottom {{{
-" That weird colorful line on the bottom
-NeoBundle "bling/vim-airline"
-let g:airline_theme='tomorrow'
-set laststatus=2
-set encoding=utf-8
-if has("gui_running")
-  let g:airline_powerline_fonts=1
-  " Even special font for this crap
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h13
-endif
+" For the VimR search rules
+set wildignore=*.so,*.a,*.pyc,.meteor,.build.*,.git
 
-function! AirlineOverride(...)
-  let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_b = airline#section#create_left(['branch'])
-  let g:airline_section_c = airline#section#create_left(['%f'])
-  let g:airline_section_y = airline#section#create([])
-endfunction
-autocmd VimEnter * call AirlineOverride()
+NeoBundle "scrooloose/nerdtree"
+"NERDTree toggle
+nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'taiansu/nerdtree-ag'
+NeoBundle 'Syntastic'
+" Use jshint (uses ~/.jshintrc)
+let g:syntastic_javascript_checkers = ['jshint']
+" Use flake8 
+let g:syntastic_python_checkers = ['flake8']
+
+NeoBundle 'Tagbar'
+"tagbar
+nnoremap <silent> <Leader>] :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'moll/vim-node'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'lukaszkorecki/CoffeeTags'
+
+NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'einars/js-beautify'
+" JavaScript
+let b:javascript_fold = 1
+map <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+NeoBundle 'marijnh/tern_for_vim'
+
+NeoBundle 'klen/python-mode'
+" pymode
+let g:pymode_folding = 1
+let g:pymode_indent = 1
+let g:pymode_virtualenv = 1
+
+NeoBundle 'fatih/vim-go'
+NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
+NeoBundle 'yuratomo/dbg.vim'
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"automatically change directory to current working file
+autocmd BufEnter * silent! lcd %:p:h
+
+"persist folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+
+"markdown 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 " set colorscheme
 colorscheme elflord
-"automatically change directory to current working file
-"may need to change this in the future to:
-autocmd BufEnter * silent! lcd %:p:h
-"set autochdir
+
 "line numbers
 set number
+
 "columns
 set ruler
+
 "persistent undo
 set undodir=~/.vim/undodir
 set undofile
 set undolevels =1000 "maximum number of changes that can be undone
 set undoreload =10000 "maximum number lines to save for undo on a buffer reload
+
 "indent settings
 set backspace=indent,eol,start
 set autoindent
@@ -143,45 +219,56 @@ set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set nocompatible              " be iMproved
-filetype off                  " must turn off before installing bundles
 
+"folding
 set foldmethod=indent
 set foldlevelstart=0
 set foldlevel=0
 
-"persist folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
-
 "improved buffer switching
 set wildchar=<Tab> wildmenu wildmode=full
 
-"match those pesky nonascii chars
-syntax match nonascii "[^\x00-\x7F]"
-highlight nonascii guibg=Red ctermbg=2
-
 "maps '' to copy to system clipboard, visual mode
 :vmap '' :w !pbcopy<CR><CR>
+
 "explicit paste toggle
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
 "maps sv,ev to loading/opening vimrc
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
+
+"save quickly normal mode
+nnoremap ww :w<CR>
+
+"save quickly and return to insert mode
+inoremap ww <Esc> :w<CR>i
+
 "leave insert mode quickly
 inoremap jj <Esc>
+
 "leave insert mode and save
 inoremap jjw <Esc> :w<CR>
+
 "leave insert mode, save, and quit
 inoremap jjwq <Esc> :wq<CR>
 
-"markdown 
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
 "ctags
 set tags=./tags,./TAGS,tags;~,TAGS;~
+
+syntax enable
+
+"coffeescript folding
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+
+" Automatically reload vimrc when it's saved "{{{
+augroup VimrcSo
+  au!
+  autocmd BufWritePost $MYVIMRC so $MYVIMRC
+augroup END
+"}}}
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
@@ -211,61 +298,6 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
-
-
-NeoBundle "scrooloose/nerdtree"
-
-NeoBundle 'rking/ag.vim'
-NeoBundle 'taiansu/nerdtree-ag'
-NeoBundle 'Syntastic'
-
-NeoBundle 'Tagbar'
-
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'moll/vim-node'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'pangloss/vim-javascript'
-
-NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'einars/js-beautify'
-
-NeoBundle 'marijnh/tern_for_vim'
-
-NeoBundle 'klen/python-mode'
-
-filetype on
-syntax on
-"NERDTree toggle
-nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
-" Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint']
-"tagbar
-nnoremap <silent> <Leader>] :TagbarToggle<CR>
-" JavaScript
-let b:javascript_fold = 1
-map <c-f> :call JsBeautify()<cr>
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-" Use flake8 
-let g:syntastic_python_checkers = ['flake8']
-" pymode
-let g:pymode_folding = 1
-let g:pymode_indent = 1
-let g:pymode_virtualenv = 1
-
-" Automatically reload vimrc when it's saved "{{{
-augroup VimrcSo
-  au!
-  autocmd BufWritePost $MYVIMRC so $MYVIMRC
-augroup END
-"}}}
-
-
 
 
 
