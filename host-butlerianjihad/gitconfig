@@ -4,7 +4,7 @@
 	conflictstyle = diff3
 [user]
 	name = Richard Moorhead
-	email = richard.moorhead@cerner.com
+	email = richard.moorhead@c2fo.com
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
@@ -19,3 +19,5 @@
 [grep]
 	extendedRegexp = true
 	lineNumber = true
+[push]
+	default = simple

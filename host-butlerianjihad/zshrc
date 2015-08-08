@@ -40,7 +40,7 @@ export WORKON_HOME=~/.virtualenvs/
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew brew-cask cp django docker fabric git github history knife meteor mvn node npm nvm rake rails rake redis-cli rsync ruby rvm svn tmux vagrant)
+plugins=(brew brew-cask cp django docker fabric git github grunt history knife meteor mvn node npm nvm rake rails rake redis-cli rsync ruby rvm svn tmux vagrant)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
@@ -61,8 +61,12 @@ PATH=$PATH:$HOME/.cabal/bin
 
 #go
 export GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 
 #ruby
-PATH=$PATH:$HOME/.rvm/bin
+export PATH=$PATH:$HOME/.rvm/bin
+
+export C2FO_HOME=/Users/richard.moorhead/git/c2fo
+
+export NODE_ENV=dockerdev
 

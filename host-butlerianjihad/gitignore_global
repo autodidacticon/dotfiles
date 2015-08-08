@@ -7,7 +7,9 @@ tags
 node_modules/
 *.pyc
 *.swp
-.tern-project
+*.swo
 .ropeproject
 pom.xml.releaseBackup
 release.properties
+_gruntfile.js
+gotagsfile

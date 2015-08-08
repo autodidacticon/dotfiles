@@ -3,16 +3,10 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-if has('autocmd')
-  filetype on
-  filetype plugin indent on
-endif
-
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-call neobundle#end()
 
 " Run and manage child processes, dependency of many other plugins "{{{
 NeoBundle 'Shougo/vimproc', {
@@ -61,6 +55,8 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#min_keyword_length = 3
+" Disable Preview window
+set completeopt-=preview
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -85,8 +81,8 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " No limit on the results of these searches
-let g:unite_source_file_rec_max_cache_files = 0
-call unite#custom#source('file_rec/async', 'max_candidates', 0)
+" let g:unite_source_file_rec_max_cache_files = 0
+" call unite#custom#source('file_rec/async', 'max_candidates', 0)
 
 " OMG OMG, shell in my VIM {{{
 NeoBundle "Shougo/vimshell"
@@ -100,8 +96,11 @@ if has("gui_running")
 endif
 "}}}
 "
-map vst :VimShellTab <CR>
+
 set shell=/bin/zsh
+map vst :VimShellTab <CR>
+map vs :VimShell <CR>
+map vsp :vsplit <CR> :VimShell <CR>
 
 " For the VimR search rules
 set wildignore=*.so,*.a,*.pyc,.meteor,.build.*,.git
@@ -114,7 +113,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'taiansu/nerdtree-ag'
 NeoBundle 'Syntastic'
 " Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jshint','jscs']
 " Use flake8 
 let g:syntastic_python_checkers = ['flake8']
 
@@ -150,6 +149,12 @@ let g:tagbar_type_go = {
 \ }
 
 
+NeoBundle 'kien/ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
+set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|node_modules)$'
+
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'vim-ruby/vim-ruby'
@@ -164,6 +169,8 @@ NeoBundle 'einars/js-beautify'
 let b:javascript_fold = 1
 map <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript setlocal ts=4 shiftwidth=4
+autocmd FileType coffee setlocal ts=2 shiftwidth=2
 " for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
@@ -180,6 +187,13 @@ let g:pymode_virtualenv = 1
 NeoBundle 'fatih/vim-go'
 NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
 NeoBundle 'yuratomo/dbg.vim'
+
+call neobundle#end()
+
+if has('autocmd')
+  filetype on
+  filetype plugin indent on
+endif
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -214,11 +228,9 @@ set undoreload =10000 "maximum number lines to save for undo on a buffer reload
 
 "indent settings
 set backspace=indent,eol,start
-set autoindent
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set autoindent smartindent
+set tabstop=2 shiftwidth=2 expandtab
+set textwidth=80
 
 "folding
 set foldmethod=indent
@@ -240,12 +252,6 @@ set showmode
 nmap <silent> ;sv :so $MYVIMRC<CR>
 nmap <silent> ;ev :e $MYVIMRC<CR>
 
-"save quickly normal mode
-nnoremap ww :w<CR>
-
-"save quickly and return to insert mode
-inoremap ww <Esc> :w<CR>i
-
 "leave insert mode quickly
 inoremap jj <Esc>
 
@@ -255,13 +261,25 @@ inoremap jjw <Esc> :w<CR>
 "leave insert mode, save, and quit
 inoremap jjwq <Esc> :wq<CR>
 
+"remap ex to Q for Ex-mode
+nnoremap ex Q
+"remap Q to q for recording
+nnoremap Q q
+"remap q to nop so that it can be safely reused
+nnoremap q <Nop>
+"remap qq for fast quit
+nnoremap qq :q!<CR>
+
+"faster split navigation
+nmap <silent> <Up> :wincmd k<CR>
+nmap <silent> <Down> :wincmd j<CR>
+nmap <silent> <Left> :wincmd h<CR>
+nmap <silent> <Right> :wincmd l<CR>
+
 "ctags
 set tags=./tags,./TAGS,tags;~,TAGS;~
 
 syntax enable
-
-"coffeescript folding
-autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
 " Automatically reload vimrc when it's saved "{{{
 augroup VimrcSo
