@@ -159,9 +159,11 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundle 'moll/vim-node'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lukaszkorecki/CoffeeTags'
+NeoBundle 'mxw/vim-jsx'
 
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'einars/js-beautify'
@@ -169,7 +171,7 @@ NeoBundle 'einars/js-beautify'
 let b:javascript_fold = 1
 map <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-autocmd FileType javascript setlocal ts=4 shiftwidth=4
+autocmd FileType javascript setlocal ts=2 shiftwidth=2
 autocmd FileType coffee setlocal ts=2 shiftwidth=2
 " for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
@@ -187,6 +189,8 @@ let g:pymode_virtualenv = 1
 NeoBundle 'fatih/vim-go'
 NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
 NeoBundle 'yuratomo/dbg.vim'
+
+NeoBundle 'derekwyatt/vim-scala'
 
 call neobundle#end()
 
@@ -316,8 +320,4 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
-
-
-
-
 
