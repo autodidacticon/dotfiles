@@ -191,12 +191,14 @@ NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
 NeoBundle 'yuratomo/dbg.vim'
 
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'tomlion/vim-solidity'
 
 call neobundle#end()
 
 if has('autocmd')
   filetype on
   filetype plugin indent on
+  filetype detect
 endif
 
 " Enable omni completion.
@@ -234,7 +236,6 @@ set undoreload =10000 "maximum number lines to save for undo on a buffer reload
 set backspace=indent,eol,start
 set autoindent smartindent
 set tabstop=2 shiftwidth=2 expandtab
-set textwidth=80
 
 "folding
 set foldmethod=indent
