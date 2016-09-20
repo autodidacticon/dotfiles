@@ -77,7 +77,7 @@ export C2FO_GO=/Users/richard.moorhead/go/src/github.com/c2fo/c2fo-go/
 export NODE_ENV=development
 
 #spark
-export SPARK_HOME=/usr/local/Cellar/apache-spark/1.6.0/libexec
+export SPARK_HOME=/usr/local/Cellar/apache-spark/1.6.2/libexec
 export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
 export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.9-src.zip:$PYTHONPATH
 export PYSPARK_PYTHON=/Users/richard.moorhead/anaconda2/bin/bpython
