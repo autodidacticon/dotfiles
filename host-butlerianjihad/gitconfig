@@ -4,7 +4,7 @@
 	conflictstyle = diff3
 [user]
 	name = Richard Moorhead
-	email = richard.moorhead@c2fo.com
+	email = richard.moorhead@gmail.com
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
@@ -12,11 +12,6 @@
 [credential]
 	helper = osxkeychain
 [alias]
-    send = "!f() { git commit -a -m $1 && git push origin `git rev-parse --abbrev-ref HEAD`; }; f"
-    amend = "!f() { git commit --amend -C HEAD && git push -f origin `git rev-parse --abbrev-ref HEAD`; }; f"
-    g = grep --break --heading --line-number
-    remtags = "!f() { for t in `git tag`; do git push origin :$t ; git tag -d $t; done }; f"
-    rembranches = "!f() { for b in `git branch | grep -v \\* | grep -v master | grep -v develop`; do git branch -D $b; done }; f"
 [grep]
 	extendedRegexp = true
 	lineNumber = true

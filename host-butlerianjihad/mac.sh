@@ -7,13 +7,14 @@ xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install 'brew bundle'
+brew update
 brew tap homebrew/bundle
 brew install hub
+brew install lastpass-cli --with-pinentry
 hub clone autodidacticon/dotfiles
 
 # install stuff
 cd ~/git/dotfiles/host-butlerianjihad
-brew update
 brew bundle -v
 
 #install oh-my-zsh
