@@ -1,0 +1,27 @@
+[merge]
+	tool = vimdiff
+	tool = prompt
+	conflictstyle = diff3
+[user]
+	name = Richard Moorhead
+	email = richard.moorhead@gmail.com
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+    autocrlf = input
+[credential]
+	helper = osxkeychain
+[alias]
+[grep]
+	extendedRegexp = true
+	lineNumber = true
+[push]
+	default = simple
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+[hub]
+	host = github.cerner.com
