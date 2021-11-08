@@ -13,9 +13,9 @@ xcode-select --install
 brew update
 brew tap homebrew/bundle
 brew install hub
-brew install lastpass-cli
+brew install lastpass-cli --with-pinentry
 git config --global hub.protocol https
-hub clone https://github.com/autodidacticon/dotfiles.git
+hub clone autodidacticon/dotfiles
 
 # install stuff
 cd ~/git/dotfiles/host-autodidacticon

@@ -1,0 +1,15 @@
+.idea
+*.iml
+.DS_Store
+.ruby-version
+.ruby-gemset
+tags
+node_modules/
+*.pyc
+*.swp
+*.swo
+.ropeproject
+pom.xml.releaseBackup
+release.properties
+_gruntfile.js
+gotagsfile
