@@ -13,3 +13,4 @@ pom.xml.releaseBackup
 release.properties
 _gruntfile.js
 gotagsfile
+.gradle/

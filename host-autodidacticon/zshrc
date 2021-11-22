@@ -55,3 +55,6 @@ source ~/.workrc
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+[ -s "/Users/659764/.web3j/source.sh" ] && source "/Users/659764/.web3j/source.sh"
+source ~/.web3j/source.sh
