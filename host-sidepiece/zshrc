@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp docker docker-compose gh git github history kubectl mvn pipenv sbt scala terraform) 
+plugins=(cp docker docker-compose git github history mvn pipenv sbt scala) 
 
 source $ZSH/oh-my-zsh.sh
 export HISTTIMEFORMAT="%F %T "
@@ -44,17 +44,3 @@ PATH=/usr/local/bin::$PATH
 export SBT_CREDENTIALS=$HOME/.sbt-credentials
 export PATH="/usr/local/opt/scala@2.12/bin:$PATH"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
-
-# terraform
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
-# current terraform workspace
-
-# werkwerk
-source ~/.workrc
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
-[ -s "/Users/659764/.web3j/source.sh" ] && source "/Users/659764/.web3j/source.sh"
-source ~/.web3j/source.sh
