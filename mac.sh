@@ -15,6 +15,8 @@ xcode-select --install
 
 # install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/`whoami`/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # clone dotfiles
 git clone https://github.com/autodidacticon/dotfiles.git

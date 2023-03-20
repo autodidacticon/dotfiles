@@ -1,5 +1,4 @@
 ZSH=$HOME/.oh-my-zsh
-SAVEHIST=1000000
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -32,30 +31,48 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp docker docker-compose gh git github history kubectl mvn pipenv rbenv sbt scala terraform) 
+plugins=(cp docker docker-compose git github golang history mvn pip pipenv poetry python sbt scala terraform) 
+autoload -U +X bashcompinit && bashcompinit
 
 source $ZSH/oh-my-zsh.sh
 export HISTTIMEFORMAT="%F %T "
 
-#vim
-export EDITOR=/usr/bin/vim
-export PATH=/usr/local/bin:$PATH
+# golang
+export PATH=$PATH:$(go env GOPATH)/bin
 
-# ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
+# javascript
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# jvm
+#export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+#export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export JAVA_HOME="/usr/local/opt/openjdk@8/"
+PATH="/usr/local/opt/openjdk@8/bin:$PATH"
+PATH="/usr/local/opt/maven@3.5/bin:$PATH"
+export PATH
 
 # scala
 export SBT_CREDENTIALS=$HOME/.sbt-credentials
-export PATH="/usr/local/opt/scala@2.12/bin:$PATH"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
+PATH="/usr/local/opt/scala@2.12/bin:$PATH"
 
-# terraform
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
-# current terraform workspace
+# mysql
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
-# werkwerk
+# python
+export PATH="/usr/local/opt/python@3.9/libexec/bin:$PATH"
+
+# ruby
+eval "$(rbenv init - zsh)"
+
+# secrets
 source ~/.workrc
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# terraform
+complete -o nospace -C /usr/local/bin/terraform terraform
 
+#vim
+export EDITOR=/usr/bin/vim
+export PATH=/usr/local/bin::$PATH
+
+export SPARK_LOCAL_IP="127.0.0.1"
