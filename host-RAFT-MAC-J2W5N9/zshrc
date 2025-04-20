@@ -31,48 +31,23 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp docker docker-compose git github golang history mvn pip pipenv poetry python sbt scala terraform) 
+plugins=(aliases alias-finder autopep8 aws cask conda cp dash dbt docker docker-compose git github golang helm history iterm2 kubectl mvn npm pre-commit python sbt scala skaffold terraform volta) 
+
+# load bash completions
 autoload -U +X bashcompinit && bashcompinit
 
 source $ZSH/oh-my-zsh.sh
 export HISTTIMEFORMAT="%F %T "
 
+# coursier
+export PATH="$PATH:/Users/rmoorhead/Library/Application Support/Coursier/bin"
+
 # golang
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# javascript
+# vim
+export EDITOR=/usr/bin/vim
+
+# volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-
-# jvm
-#export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-#export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export JAVA_HOME="/usr/local/opt/openjdk@8/"
-PATH="/usr/local/opt/openjdk@8/bin:$PATH"
-PATH="/usr/local/opt/maven@3.5/bin:$PATH"
-export PATH
-
-# scala
-export SBT_CREDENTIALS=$HOME/.sbt-credentials
-PATH="/usr/local/opt/scala@2.12/bin:$PATH"
-
-# mysql
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-# python
-export PATH="/usr/local/opt/python@3.9/libexec/bin:$PATH"
-
-# ruby
-eval "$(rbenv init - zsh)"
-
-# secrets
-source ~/.workrc
-
-# terraform
-complete -o nospace -C /usr/local/bin/terraform terraform
-
-#vim
-export EDITOR=/usr/bin/vim
-export PATH=/usr/local/bin::$PATH
-
-export SPARK_LOCAL_IP="127.0.0.1"

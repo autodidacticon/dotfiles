@@ -1,6 +1,0 @@
-# set line numbers
-set number
-
-# automatically change the current directory to the buffer's path
-# https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-autocmd BufEnter * silent! lcd %:p:h

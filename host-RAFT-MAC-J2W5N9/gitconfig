@@ -9,6 +9,7 @@
 	editor = vim
 	excludesfile = ~/.gitignore_global
     autocrlf = input
+	pager = less
 [credential]
 	helper = osxkeychain
 [alias]
@@ -17,11 +18,12 @@
 	lineNumber = true
 [push]
 	default = simple
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+[credential "https://gitlab-cbc2.cce.af.mil"]
+	provider = generic

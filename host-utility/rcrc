@@ -1,3 +1,0 @@
-EXCLUDES="README.md"
-HOSTNAME="utility"
-DOTFILES_DIRS="$HOME/git/dotfiles"

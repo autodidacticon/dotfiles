@@ -9,6 +9,7 @@
 	editor = vim
 	excludesfile = ~/.gitignore_global
     autocrlf = input
+	pager = less
 [credential]
 	helper = osxkeychain
 [alias]
