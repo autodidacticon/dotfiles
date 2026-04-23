@@ -23,6 +23,7 @@ xcode-select --install
 # install Homebrew
 if ! brew --version &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 brew update
 
