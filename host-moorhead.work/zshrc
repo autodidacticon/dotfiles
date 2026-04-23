@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(aliases alias-finder autopep8 aws conda cp dash dbt docker docker-compose git github golang helm history iterm2 kubectl mvn npm pre-commit python sbt scala skaffold terraform volta) 
+plugins=(aliases alias-finder autopep8 aws conda cp dash dbt docker docker-compose gcloud git github golang helm history iterm2 kubectl mvn npm pre-commit python sbt scala skaffold terraform volta) 
 
 # load bash completions
 autoload -U +X bashcompinit && bashcompinit
@@ -39,14 +39,11 @@ autoload -U +X bashcompinit && bashcompinit
 source $ZSH/oh-my-zsh.sh
 export HISTTIMEFORMAT="%F %T "
 
-# coursier
-export PATH="$PATH:/Users/rmoorhead/Library/Application Support/Coursier/bin"
+# homebrew 
+export PATH="$PATH:/opt/homebrew/opt/"
 
 # golang
 export PATH=$PATH:$(go env GOPATH)/bin
-
-# java
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
 # vim
 export EDITOR=/usr/bin/vim
@@ -55,8 +52,12 @@ export EDITOR=/usr/bin/vim
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/rmoorhead/.docker/completions $fpath)
+fpath=(/Users/richard/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+export PATH="/opt/homebrew/opt/apache-flink@1/bin:$PATH"
+
+source ~/.secrets
+
 export PATH="$HOME/.local/bin:$PATH"

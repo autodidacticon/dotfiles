@@ -1,5 +1,3 @@
-CLAUDE.md
-.claude/
 .quarkus
 .idea
 *.iml
@@ -18,4 +16,4 @@ _gruntfile.js
 gotagsfile
 .gradle/
 pom.xml.bak
-pom.xml.versionsBackup
+.mvn/

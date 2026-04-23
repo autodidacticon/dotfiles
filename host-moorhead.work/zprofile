@@ -1,0 +1,23 @@
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
+# Added by Toolbox App
+export PATH="$PATH:/Users/richard/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# secrets
+source ~/.secrets
+
+# Setting PATH for Python 3.11
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
+export PATH
+
+
+# >>> JVM installed by coursier >>>
+export JAVA_HOME="/Users/richard/Library/Caches/Coursier/arc/https/cdn.azul.com/zulu/bin/zulu17.60.17-ca-jdk17.0.16-macosx_aarch64.tar.gz/zulu17.60.17-ca-jdk17.0.16-macosx_aarch64"
+# <<< JVM installed by coursier <<<
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/richard/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
