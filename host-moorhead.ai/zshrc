@@ -48,9 +48,6 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # vim
 export EDITOR=/usr/bin/vim
 
-# volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/richard/.docker/completions $fpath)
 autoload -Uz compinit
@@ -61,3 +58,5 @@ export PATH="/opt/homebrew/opt/apache-flink@1/bin:$PATH"
 source ~/.secrets
 
 export PATH="$HOME/.local/bin:$PATH"
+eval "$(fnm env --use-on-cd)"
+export NODE_PATH="$(npm root -g)"
